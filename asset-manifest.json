@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/CardMaker/static/css/main.0fa0c4bd.css",
+    "main.js": "/CardMaker/static/js/main.b348948c.js",
+    "static/js/787.cf6013e7.chunk.js": "/CardMaker/static/js/787.cf6013e7.chunk.js",
+    "index.html": "/CardMaker/index.html",
+    "main.0fa0c4bd.css.map": "/CardMaker/static/css/main.0fa0c4bd.css.map",
+    "main.b348948c.js.map": "/CardMaker/static/js/main.b348948c.js.map",
+    "787.cf6013e7.chunk.js.map": "/CardMaker/static/js/787.cf6013e7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0fa0c4bd.css",
+    "static/js/main.b348948c.js"
+  ]
+}
