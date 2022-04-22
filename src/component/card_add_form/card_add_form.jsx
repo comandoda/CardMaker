@@ -1,9 +1,8 @@
-import React, { useRef, useTransition } from "react";
-import ImageFileInput from "../../image_file_input/image_file_input";
+import React, { memo, useRef, useState } from "react";
 import Button from "../button/button";
-import styles from "./card_add.module.css";
+import styles from "./card_add_form.module.css";
 
-const CardAdd = ({ onAdd }) => {
+const CardAddForm = memo(({ onAdd, FileInput }) => {
   const formRef = useRef();
   const nameRef = useRef();
   const companyRef = useRef();
@@ -11,8 +10,18 @@ const CardAdd = ({ onAdd }) => {
   const titleRef = useRef();
   const emailRef = useRef();
   const messageRef = useRef();
-  const onSubmit = (e) => {
-    e.preventDefault();
+
+  const [file, setFile] = useState({ fileName: null, fileURL: null });
+
+  const onFileChange = (file) => {
+    setFile({
+      fileName: file.name,
+      fileURL: file.url,
+    });
+  };
+
+  const onSubmit = (event) => {
+    event.preventDefault();
     const card = {
       id: Date.now(),
       name: nameRef.current.value || "",
@@ -21,10 +30,11 @@ const CardAdd = ({ onAdd }) => {
       title: titleRef.current.value || "",
       email: emailRef.current.value || "",
       message: messageRef.current.value || "",
-      fileName: "",
-      fileUrl: "",
+      fileName: file.fileName || "",
+      fileURL: file.fileURL || "",
     };
     formRef.current.reset();
+    setFile({ fileName: null, fileURL: null });
     onAdd(card);
   };
   return (
@@ -44,8 +54,8 @@ const CardAdd = ({ onAdd }) => {
         placeholder="company"
       ></input>
       <select
-        className={styles.select}
         ref={themeRef}
+        className={styles.select}
         name="theme"
         placeholder="theme"
       >
@@ -74,11 +84,11 @@ const CardAdd = ({ onAdd }) => {
         placeholder="message"
       ></textarea>
       <div className={styles.fileInput}>
-        <ImageFileInput />
+        <FileInput name={file.fileName} onFileChange={onFileChange} />
       </div>
-      <Button name="add" onClick={onSubmit} />
+      <Button name="Add" onClick={onSubmit} />
     </form>
   );
-};
+});
 
-export default CardAdd;
+export default CardAddForm;
